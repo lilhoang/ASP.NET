@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DigitalApp.Models.KhachHang>
+
+@{
+    ViewBag.Title = "DanhSachKhachHang";
+    Layout = "~/Views/shared/LayoutUser.cshtml";
+    ViewBag.active = 6;
+
+    //Truyền một list
+    ViewBag.DanhSachSinhVien = new List<String> { "Hoàng Lương", "Lường Hoang" };
+}
+
+
+<div class="container" style="margin-top: 130px; min-height: 80vh">
+    <div class="col-md-12">
+        <h4>Danh Sách Khách Hàng
+            <a href="~/KhachHang/ThemMoi" style="float: right;">Thêm mới</a></h4>
+        </div>
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Sex
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sex)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    </div>
+
+   

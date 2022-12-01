@@ -1,0 +1,82 @@
+﻿@model DigitalApp.Models.KhachHang
+
+@{
+    ViewBag.Title = "ThemMoi";
+    Layout = "~/Views/shared/LayoutUser.cshtml";
+    ViewBag.active = 6;
+
+    //Truyền một list
+    ViewBag.DanhSachSinhVien = new List<String> { "Hoàng Lương", "Lường Hoang" };
+
+}
+
+
+<div class="container" style="margin-top: 100px; min-height: 80vh">
+    <div class="col-md-12">
+        <h4>
+            Thêm khách hàng
+        </h4>
+        <br/>
+    </div>
+    <div class="col-md-12">
+        @using (Html.BeginForm("ThemMoi", "KhachHang", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <label class="control-label col-md-2 ">ID</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2 ">Name</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2 ">PhoneNumber</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2 ">Email</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2 ">Sex</label>
+                    <div class="col-md-10">
+                        @*<select name="Sex" class="form-control">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>*@
+
+                        <input type="checkbox" name="Sex" />
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-success btn-sm">Add</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+ </div>

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "AddMayTinh";
+    Layout = "~/Views/shared/LayoutUser.cshtml";
+    ViewBag.active = 1;
+
+    //Truyền một list
+    ViewBag.DanhSachSinhVien = new List<String> { "Hoàng Lương", "Lường Hoang" };
+
+}
+
+<main>
+    <div class="page-section features" style="margin: 150px 0px">
+        <div class="container">
+            <h4>Thêm máy tính mới</h4>
+            <form action="~/Home/ThemMayTinh" method="post">
+                <div class="mb-3 mt-3">
+                    <label for="MaMay" class="form-label">Mã Máy:</label>
+                    <input type="text" class="form-control" name="MaMay">
+                </div>
+                <div class="mb-3">
+                    <label for="DongMay" class="form-label">Dòng Máy:</label>
+                    <input type="text" class="form-control" name="DongMay">
+                </div>
+                <div class="mb-3">
+                    <label for="GiaBan" class="form-label">Giá Bán:</label>
+                    <input type="number" class="form-control" name="GiaBan">
+                </div>
+                <div class="mb-3">
+                    <label for="NgaySanXuat" class="form-label">Date:</label>
+                    <input type="date" class="form-control" name="NgaySanXuat">
+                </div>
+                <div class="mb-3">
+                    <label for="DongMay" class="form-label">Hãng Sản Xuất:</label>
+                    <input type="text" class="form-control" name="HangSanXuat">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</main>

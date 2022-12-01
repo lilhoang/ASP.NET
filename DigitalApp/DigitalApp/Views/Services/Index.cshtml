@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Services";
+    ViewBag.button = "Sign in";
+    Layout = "~/Views/shared/LayoutUser.cshtml";
+    ViewBag.active = 3;
+
+    //Truyền một list
+    ViewBag.DanhSachSinhVien = new List<String> { "Hoàng Lương", "Lường Hoang" };
+}
+
+<main>
+    <div class="page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 py-3">
+                    <h2 class="title-section">We're <span class="marked">ready to</span> Serve you with best</h2>
+                    <div class="divider"></div>
+                    <p class="mb-5">We provide marketing services to startups & small business to looking for partner for their digital media, design & dev lead generation & communication.</p>
+                    <a href="#" class="btn btn-primary">More Details</a>
+                    <a href="#" class="btn btn-outline ml-2">See pricing</a>
+                </div>
+                <div class="col-lg-6 py-3">
+                    <div class="img-place text-center">
+                        <img src="~/assets/img/bg_image_3.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .container -->
+    </div> <!-- .page-section -->
+
+    <div class="page-section">
+        <div class="container">
+            <div class="text-center">
+                <div class="subhead">Why Choose Us</div>
+                <h2 class="title-section">Your <span class="marked">Comfort</span> is Our Priority</h2>
+                <div class="divider mx-auto"></div>
+            </div>
+
+            <div class="row mt-5 text-center">
+                <div class="col-lg-4 py-3">
+                    <div class="display-3"><span class="mai-shapes"></span></div>
+                    <h5>High Performance</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, sit.</p>
+                </div>
+                <div class="col-lg-4 py-3">
+                    <div class="display-3"><span class="mai-shapes"></span></div>
+                    <h5>Friendly Prices</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, sit.</p>
+                </div>
+                <div class="col-lg-4 py-3">
+                    <div class="display-3"><span class="mai-shapes"></span></div>
+                    <h5>No time-confusing</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, sit.</p>
+                </div>
+            </div>
+        </div> <!-- .container -->
+    </div> <!-- .page-section -->
+</main>
+
+@section Meta{
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="copyright" content="MACode ID, https://macodeid.com">
+
+}
+
+@section Garph{
+    <div class="container mt-5">
+        <div class="page-banner">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-md-6">
+                    <nav aria-label="Breadcrumb">
+                        <ul class="breadcrumb justify-content-center py-0 bg-transparent">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">Services</li>
+                        </ul>
+                    </nav>
+                    <h1 class="text-center">Services</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

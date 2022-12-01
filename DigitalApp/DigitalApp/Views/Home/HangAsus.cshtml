@@ -1,0 +1,61 @@
+﻿
+
+
+@model List<DigitalApp.Models.MayTinh>
+@{
+    ViewBag.Title = "Home";
+    ViewBag.button = "Sign in";
+    Layout = "~/Views/shared/LayoutUser.cshtml";
+    ViewBag.active = 1;
+
+    //Truyền một list
+    ViewBag.DanhSachSinhVien = new List<String> { "Hoàng Lương", "Lường Hoang" };
+
+}
+
+<main>
+    <div class="page-section features" style="margin: 150px 0px">
+        <h4>Danh Sách Asus</h4>
+        <p><a href="~/">Quay Lại</a></p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Mã Máy</th>
+                    <th>Tên dòng máy</th>
+                    <th>Giá bán</th>
+                    <th>Ngày sản xuất</th>
+                    <th>Hãng sản xuất</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MaMay</td>
+                        <td>@item.DongMay</td>
+                        <td>@string.Format("{0:#,0}", item.GiaBan)</td>
+                        <td>@string.Format("{0:d-MM-yyy}", item.NgaySanXuat)</td>
+                        <td>@item.HangSanXuat</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="page-section counter-section">
+        <div class="container">
+            <div class="row align-items-center text-center">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4">
+                        <p>@item.DongMay</p>
+                        <h2><span class="number">@string.Format("{0:#,0}", item.GiaBan)</span></h2>
+                    </div>
+                }
+            </div>
+        </div> <!-- .container -->
+    </div>
+</main>
+
+
+
+
