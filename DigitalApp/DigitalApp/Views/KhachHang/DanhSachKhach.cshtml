@@ -33,6 +33,9 @@
                 <th>
                     Sex
                 </th>
+                <th>
+                    Picture
+                </th>
                 <th></th>
             </tr>
 
@@ -54,10 +57,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Sex)
                     </td>
+                    <th>
+                        <img src="@item.UrlHinhAnh" style="height:100px; width: 100px"/>
+                    </th>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        <a href="~/KhachHang/CapNhat?idKhachHang=@item.ID">Edit</a> |
+                        <a onclick="XoaKhachHang(@item.ID)" href="">Delete</a>
                     </td>
                 </tr>
             }
@@ -65,5 +70,14 @@
         </table>
     </div>
     </div>
+@section script{
+    <script>
+        var XoaKhachHang = function (idKhachHang) {
+            if (confirm("Bạn có muốn xóa hay không?") == true) {
+                location.href='/KhachHang/Xoa?idKhachHang=' + idKhachHang
+            }
+        }
+    </script>
 
+    }
    
