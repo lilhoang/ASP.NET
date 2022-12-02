@@ -1,0 +1,94 @@
+﻿@model DigitalApp.Models.DonHang
+
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Views/shared/LayoutUser.cshtml";
+}
+
+<div class="container" style="padding-top: 120px;  min-height: 80vh">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>
+                Chi Tiết Đơn Hàng
+            </h4>
+
+            <hr />
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NgayDatHang)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayDatHang)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+            </div>
+
+        <div class="col-md-8">
+            <h6>Chi Tiết Đơn Hàng
+                <a href="~/DonHang/ThemChiTiet?idDonHang=@Model.ID" style="float: right;">Thêm mới</a>
+            </h6>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Mã Máy</th>
+                    <th>Dòng Máy</th>
+                    <th>Giá Bán</th>
+                    <th>Ngày Sản Xuất</th>
+                    <th>Hãng Sản Xuất</th>
+                    <th></th>
+                </tr>
+                @foreach(var item in Model.MayTinhDatMua)
+            {
+                <tr>
+                    <td>@item.MaMay</td>
+                    <td>@item.DongMay</td>
+                    <td>@item.GiaBan</td>
+                    <td>@item.NgaySanXuat</td>
+                    <td>@item.HangSanXuat</td>
+                    <td>
+                        <a href="~/DonHang/CapNhatChiTiet?idDonHang=@Model.ID&MaMay=@item.MaMay">Sửa</a>
+                        <a href="~/DonHang/XoaChiTiet?idDonHang=@Model.ID&MaMay=@item.MaMay">Xóa</a>
+                    </td>
+                </tr>
+            }
+            </table>
+        </div>
+        </div>
+</div>

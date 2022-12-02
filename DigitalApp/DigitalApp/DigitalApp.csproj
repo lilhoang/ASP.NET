@@ -125,6 +125,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -134,10 +135,12 @@
     </Compile>
     <Compile Include="Helper\MathHelp.cs" />
     <Compile Include="Models\DanhSachKhachHang.cs" />
+    <Compile Include="Models\DonHang.cs" />
     <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\ListMayTinh.cs" />
     <Compile Include="Models\MayTinh.cs" />
     <Compile Include="Models\SinhVien.cs" />
+    <Compile Include="Models\StaticDonHang.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +163,12 @@
     <Content Include="Views\KhachHang\DanhSachKhach.cshtml" />
     <Content Include="Views\KhachHang\ThemMoi.cshtml" />
     <Content Include="Views\KhachHang\CapNhat.cshtml" />
+    <Content Include="Views\DonHang\DanhSachHang.cshtml" />
+    <Content Include="Views\DonHang\ThemDonHang.cshtml" />
+    <Content Include="Views\DonHang\CapNhatDonHang.cshtml" />
+    <Content Include="Views\DonHang\ChiTiet.cshtml" />
+    <Content Include="Views\DonHang\ThemChiTiet.cshtml" />
+    <Content Include="Views\DonHang\CapNhatChiTiet.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

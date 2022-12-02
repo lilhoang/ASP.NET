@@ -1,0 +1,68 @@
+﻿@model IEnumerable<DigitalApp.Models.DonHang>
+
+@{
+    ViewBag.Title = "DanhSachHang";
+    Layout = "~/Views/shared/LayoutUser.cshtml";
+}
+
+<div class="container" style="padding-top: 120px;  min-height: 80vh">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>
+                Danh Sách Đơn Hàng
+                <a href="~/DonHang/ThemDonHang" style="float:right;">Thêm Đơn Hàng</a>
+            </h4>
+           
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        PhoneNumber
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        NgayDatHang
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            <a href="~/DonHang/ChiTiet?idDonHang=@item.ID"> @Html.DisplayFor(modelItem => item.Name)</a>
+                         </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayDatHang)
+                        </td>
+                        <td>
+                            <a href="~/DonHang/CapNhatDonHang?idDonHang=@item.ID">Edit</a> |
+                            <a href="~/DonHang/XoaDonHang?idDonHang=@item.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

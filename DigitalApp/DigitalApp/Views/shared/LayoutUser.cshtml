@@ -32,30 +32,34 @@
 
                 <div class="navbar-collapse collapse" id="navbarContent">
                     <ul class="navbar-nav ml-lg-4 pt-3 pt-lg-0">
-                            <li class="nav-item @Html.Raw(ViewBag.active==1 ? "active" :"")">
-                                <a href="~/" class="nav-link">Home</a>
-                            </li>
-            
-                            <li class="nav-item @Html.Raw(ViewBag.active==2 ? "active" :"")">
-                                <a href="~/About" class="nav-link">About</a>
-                            </li>
-                   
-                            <li class="nav-item @Html.Raw(ViewBag.active==3 ? "active" :"")">
-                                <a href="~/Services" class="nav-link">Services</a>
-                            </li>
-                  
-                            <li class="nav-item @Html.Raw(ViewBag.active==4 ? "active" :"")">
-                                <a href="~/News" class="nav-link">News</a>
-                            </li>
-                       
-                            <li class="nav-item @Html.Raw(ViewBag.active==5 ? "active" :"")">
-                                <a href="~/Contact" class="nav-link">Contact</a>
-                            </li>
-                            
-                            <li class="nav-item @Html.Raw(ViewBag.active==6 ? "active" :"")">
-                                <a href="~/KhachHang/DanhSachKhach" class="nav-link">Customer</a>
-                            </li>
-                        
+                        <li class="nav-item @Html.Raw(ViewBag.active==1 ? "active" :"")">
+                            <a href="~/" class="nav-link">Home</a>
+                        </li>
+
+                        <li class="nav-item @Html.Raw(ViewBag.active==2 ? "active" :"")">
+                            <a href="~/About" class="nav-link">About</a>
+                        </li>
+
+                        <li class="nav-item @Html.Raw(ViewBag.active==3 ? "active" :"")">
+                            <a href="~/Services" class="nav-link">Services</a>
+                        </li>
+
+                        <li class="nav-item @Html.Raw(ViewBag.active==4 ? "active" :"")">
+                            <a href="~/News" class="nav-link">News</a>
+                        </li>
+
+                        <li class="nav-item @Html.Raw(ViewBag.active==5 ? "active" :"")">
+                            <a href="~/Contact" class="nav-link">Contact</a>
+                        </li>
+
+                        <li class="nav-item @Html.Raw(ViewBag.active==6 ? "active" :"")">
+                            <a href="~/KhachHang/DanhSachKhach" class="nav-link">Customer</a>
+                        </li>
+
+                        <li class="nav-item @Html.Raw(ViewBag.active==7 ? "active" :"")">
+                            <a href="~/DonHang/DanhSachHang" class="nav-link">Đơn Hàng</a>
+                        </li>
+
                     </ul>
 
                     <div class="ml-auto">
@@ -115,16 +119,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6 py-2">
-                    <p id="copyright">
-                        @{ 
-                            List<String> danhSachSV = (List<String>)ViewBag.DanhSachSinhVien;
-                            for(int i = 0; i < danhSachSV.Count; i++)
-                            {
-                                <span>@danhSachSV[i]</span>
-                            }
-                        }
-                    </p>
+                <div class="col-sm-6 py-2"
                 <div class="col-sm-6 py-2 text-right">
                     <div class="d-inline-block px-3">
                         <a href="#">Privacy</a>
