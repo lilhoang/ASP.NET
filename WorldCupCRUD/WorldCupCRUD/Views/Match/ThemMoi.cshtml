@@ -1,0 +1,84 @@
+﻿@model WorldCupCRUD.Models.Matchs
+
+@{
+    ViewBag.active = 2;
+    ViewBag.Title = "ThemMoi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top: 100px; min-height: 80vh">
+    <div class="col-md-12">
+        <h4>
+            Thêm Trận Đấu
+        </h4>
+        <br />
+    </div>
+    <div class="col-md-12">
+        @using (Html.BeginForm("ThemMoi", "Match", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Matchs</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-2 ">ID</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2 ">Picture 1</label>
+                <div class="col-md-10">
+                    <input type="file" name="FileAnh" />
+                    @Html.ValidationMessageFor(model => model.UrlHinhAnh, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2 ">Team 1</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Team1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Team1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2 ">Picture 2</label>
+                <div class="col-md-10">
+                    <input type="file" name="FileAnh2" />
+                    @Html.ValidationMessageFor(model => model.UrlHinhAnh2, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2 ">Team 2</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Team2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Team2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2 ">Score</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Score, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Score, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-sm btn-success">Add</button>
+                </div>
+            </div>
+        </div>
+        }
+</div>
+</div>
