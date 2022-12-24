@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -14,86 +15,94 @@ namespace DigitalApp.Controllers
         // GET: KhachHang
         public ActionResult DanhSachKhach()
         {
-            return View(DanhSachKhachHang.dsKhachHang);
+            //1. lấy danh sách dữ liệu trong bảng
+            BanHang_TestEntities db = new BanHang_TestEntities();
+            List<KhachHang> danhSachKhachHang = db.KhachHangs.ToList();
+            return View(danhSachKhachHang);
         }
 
         public ActionResult ThemMoi()
         {
-            return View(new KhachHang() { ID = 0});
+            return View();
         }
 
         [HttpPost]
-        public ActionResult ThemMoi(KhachHang model, HttpPostedFileBase fileAnh)
+        public ActionResult ThemMoi(KhachHang model)
         {
-            if(model.ID == 0)
-            {
-                ModelState.AddModelError("", "ID phải nhập lớn hơn 0");
-                return View(model);
-            }
-            if(fileAnh.ContentLength > 0)
-            {
-                string rootFolder = Server.MapPath("/Data/");
-
-                string pathImage = rootFolder + fileAnh.FileName;
-
-                fileAnh.SaveAs(pathImage);
-
-                model.UrlHinhAnh= "/Data/" +fileAnh.FileName;
-            }    
-
-
-            DanhSachKhachHang.dsKhachHang.Add(model);
-
+            //2. Thêm mới bản ghi
+            BanHang_TestEntities db = new BanHang_TestEntities();
+            db.KhachHangs.Add(model);
+            //lưu lại thay đổi
+            db.SaveChanges();
 
             return RedirectToAction("DanhSachKhach");
+
         }
 
-        public ActionResult CapNhat(int idKhachHang)
+        public ActionResult CapNhat(int id)
         {
-            //tìm ra đối tg khách hàng cần sửa
-            var KhachHang = DanhSachKhachHang.dsKhachHang.SingleOrDefault(m => m.ID == idKhachHang);
-            //truyền thông tin đối tg cần sửa sang view
-            return View(KhachHang);
+            //3. Tìm đối tượng theo ID
+            BanHang_TestEntities db = new BanHang_TestEntities();
+            KhachHang model = db.KhachHangs.Find(id);
+
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult CapNhat(KhachHang model, HttpPostedFileBase fileAnh)
+        public ActionResult CapNhat(KhachHang model)
         {
-            if(string.IsNullOrEmpty(model.Name)== true)
-            {
-                ModelState.AddModelError("", "Bạn chưa nhập tên khách hàng");
-            }
-            if (fileAnh.ContentLength > 0)
-            {
-                string rootFolder = Server.MapPath("/Data/");
+            BanHang_TestEntities db = new BanHang_TestEntities();
+            // tìm đối tượng
+            var updateModel = db.KhachHangs.Find(model.ID);
+            // Gán Giá Trị 
+            updateModel.SoDienThoai = model.SoDienThoai;
+            updateModel.TenKhachHang = model.TenKhachHang;
+            updateModel.DiaChi = model.DiaChi;
+            updateModel.idLoaiKhachHang = model.idLoaiKhachHang;
 
-                string pathImage = rootFolder + fileAnh.FileName;
+            //lưu thay đổi
 
-                fileAnh.SaveAs(pathImage);
+            db.SaveChanges();
 
-                model.UrlHinhAnh = "/Data/" + fileAnh.FileName;
-            }
-            //tìm đối tg cần sửa
-            var KhachHang = DanhSachKhachHang.dsKhachHang.SingleOrDefault(m => m.ID == model.ID);
-            // Cập nhật dữ liệu mới cho đối tượng cần sửa
-            KhachHang.Name = model.Name;
-            KhachHang.PhoneNumber = model.PhoneNumber;
-            KhachHang.Email = model.Email;
-            KhachHang.Sex= model.Sex;
-            KhachHang.UrlHinhAnh = model.UrlHinhAnh;
+            return RedirectToAction("DanhSachKhach");
+
+        }
+
+        public ActionResult Xoa(int id)
+        {
+            BanHang_TestEntities db = new BanHang_TestEntities();
+
+            var updateModel = db.KhachHangs.Find(id);
+            //Lệnh Xóa
+            db.KhachHangs.Remove(updateModel);
+
+            db.SaveChanges();
 
             return RedirectToAction("DanhSachKhach");
         }
 
-
-        
-        public ActionResult Xoa(int idKhachhang)
+        public ActionResult XoaKhachHangTheoNhom(int idLoaiKhachHang)
         {
-            //tìm đối tg cần Xoa
-            var KhachHang = DanhSachKhachHang.dsKhachHang.SingleOrDefault(m => m.ID == idKhachhang);
-            //thực hiện xóa
-            DanhSachKhachHang.dsKhachHang.Remove(KhachHang);
+            // 1: Xóa dữ liệu bảng cần xóa : loại khách hàng
+            BanHang_TestEntities db = new BanHang_TestEntities();
+            var modelLoaiKhachHang = db.LoaiKhachHangs.Find(idLoaiKhachHang);
+            db.LoaiKhachHangs.Remove(modelLoaiKhachHang);
+            db.SaveChanges();
+            // 2: Xóa bảng con liên quan: Khách hàng: xóa luôn các Khách hàng thuộc nhóm đó
+            var danhSachKhachHangThuocNhom = db.KhachHangs.Where(m=>m.idLoaiKhachHang == idLoaiKhachHang).ToList();
+            db.KhachHangs.RemoveRange(danhSachKhachHangThuocNhom);
+            db.SaveChanges();
+            // Xóa lẻ:
+            foreach(var KhachHang in danhSachKhachHangThuocNhom) 
+            {
+                if(KhachHang.DiaChi == "TN")
+                {
+                    db.KhachHangs.Remove(KhachHang);
+                }    
+            }
+            db.SaveChanges();
+
             return RedirectToAction("DanhSachKhach");
-        }
+        }   
     }
 }

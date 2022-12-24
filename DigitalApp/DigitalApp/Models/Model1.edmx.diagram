@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4bdd0c63d999482bad956af0e3708bd3" Name="Diagram1">
+        <EntityTypeShape EntityType="BanHang_TestModel.KhachHang" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHang_TestModel.MayTinh" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHang_TestModel.LoaiKhachHang" Width="1.5" PointX="0.75" PointY="3.75" />
+        <AssociationConnector Association="BanHang_TestModel.FK_KhachHang_LoaiKhachHang" />
+        <EntityTypeShape EntityType="BanHang_TestModel.BaiViet" Width="1.5" PointX="5.625" PointY="4" />
+        <EntityTypeShape EntityType="BanHang_TestModel.LoaiBaiViet" Width="1.5" PointX="3.375" PointY="4.75" />
+        <AssociationConnector Association="BanHang_TestModel.FK_BaiViet_LoaiBaiViet" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

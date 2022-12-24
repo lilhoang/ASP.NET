@@ -70,3 +70,7 @@ C:\ASP.NET\DigitalApp\DigitalApp\obj\Debug\DigitalApp.csproj.CoreCompileInputs.c
 C:\ASP.NET\DigitalApp\DigitalApp\obj\Debug\DigitalApp.csproj.CopyComplete
 C:\ASP.NET\DigitalApp\DigitalApp\obj\Debug\DigitalApp.dll
 C:\ASP.NET\DigitalApp\DigitalApp\obj\Debug\DigitalApp.pdb
+C:\ASP.NET\DigitalApp\DigitalApp\bin\EntityFramework.dll
+C:\ASP.NET\DigitalApp\DigitalApp\bin\EntityFramework.SqlServer.dll
+C:\ASP.NET\DigitalApp\DigitalApp\bin\EntityFramework.xml
+C:\ASP.NET\DigitalApp\DigitalApp\bin\EntityFramework.SqlServer.xml

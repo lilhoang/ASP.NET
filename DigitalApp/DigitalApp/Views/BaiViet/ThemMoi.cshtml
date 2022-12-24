@@ -1,0 +1,98 @@
+﻿@model DigitalApp.Models.BaiViet
+
+@{
+    ViewBag.Title = "ThemMoiBaiViet";
+    Layout = "~/Views/shared/LayoutUser.cshtml";
+}
+
+<div class="container" style="margin-top: 130px; min-height: 80vh">
+    <div class="col-md-12">
+        <h4>
+            Danh Sách Bài Viết
+            
+        </h4>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">Loại Bài Viết</label>
+                <div class="col-md-10">
+                    
+                    <select name="idBaiViet" class="form-control">
+                    @foreach (var item in new DigitalApp.Models.BanHang_TestEntities().LoaiBaiViets.ToList())
+                    {
+                        <option value="@item.ID">@item.TenLoai</option>
+                    }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.idBaiViet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Tên Bài Viết</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TenBaiViet, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TenBaiViet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Ngày Viết</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NgayViet, new { htmlAttributes = new { @class = "form-control", Type = "date" } })
+                    @Html.ValidationMessageFor(model => model.NgayViet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Người Viết</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NguoiViet, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NguoiViet, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Hình ảnh</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control", type = "file" } })
+                    @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Thứ Tự</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ThuTu, new { htmlAttributes = new { @class = "form-control", Type = "number" } })
+                    @Html.ValidationMessageFor(model => model.ThuTu, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Hiển Thị</label>
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        <input type="checkbox" value="true" name="HienThi" @Html.Raw(Model.HienThi == true ? "checked": "") />
+                        @Html.ValidationMessageFor(model => model.HienThi, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+        
+
