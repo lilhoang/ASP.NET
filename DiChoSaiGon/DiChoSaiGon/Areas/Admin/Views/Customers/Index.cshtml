@@ -1,0 +1,86 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<DiChoSaiGon.Models.Customer>
+
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Customers" + CurrentPage;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container" style="padding-top: 100px;  min-height: 80vh">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Customers : page @CurrentPage</h1>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row m-b-30">
+                <div class="col-lg-12">
+                    <div class="d-md-flex">
+                        <div class="m-b-10 m-r-15">
+                            <select class="custom-select" id="idrole" name="idrole" style="min-width: 180px;" asp-items="ViewBag.RoleId">
+                                <option value="0" disabled selected>Roles</option>
+                            </select>
+                        </div>
+                        <div class="m-b-10 m-l-15">
+                            <select class="custom-select" id="idstatus" name="idstatus" style="min-width: 180px;" asp-items="ViewBag.IsTrangThai">
+                                <option value="" disabled selected>Status</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+<table class="table">
+            <thead>
+                <tr>
+                        <th>
+                           ID
+                        </th>
+                    <th>
+                        FullName
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerId)
+                    </td>
+                    <td>
+                        <p>@Html.DisplayFor(modelItem => item.FullName)</p>
+                        <p>@Html.DisplayFor(modelItem => item.Phone)</p>
+                        <p>@Html.DisplayFor(modelItem => item.Email)</p>
+                    </td>
+                    <td>
+                        <p>@Html.DisplayFor(modelItem => item.Address)</p>
+                    </td>
+                    <td>
+                         <a class="btn btn-primary btn-tone m-r-5" asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a>
+                                <a class="btn btn-secondary btn-tone m-r-5" asp-action="Details" asp-route-id="@item.CustomerId">Details</a>
+                                <a class="btn btn-success btn-tone m-r-5" asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+        <div aria-label="Page navigation example">
+            <ul class="pagination"> 
+                <pager class="pager-container" list="@Model" asp-area="Admin" asp-controller="Customer" asp-action="Index"/>
+            </ul>
+        </div>
+        </div>
+    </div>
+</div>
