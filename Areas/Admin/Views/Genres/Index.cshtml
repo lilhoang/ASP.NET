@@ -1,0 +1,48 @@
+﻿@model IEnumerable<OnlineBookLibrary.Models.Genre>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container" style="padding-top: 100px;  min-height: 80vh">
+    <div class="row">
+        <div class="col-md-12" style="float: right;">
+            <h4>
+                Genres
+                <a asp-action="Create" style="float: right;" class="btn btn-primary"><span>Add Genre</span></a>
+            </h4>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GenreName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GenreId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GenreName)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-tone m-r-5" asp-action="Edit" asp-route-id="@item.GenreId">Edit</a>
+                        <a class="btn btn-secondary btn-tone m-r-5" asp-action="Details" asp-route-id="@item.GenreId">Details</a>
+                        <a class="btn btn-success btn-tone m-r-5" asp-action="Delete" asp-route-id="@item.GenreId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

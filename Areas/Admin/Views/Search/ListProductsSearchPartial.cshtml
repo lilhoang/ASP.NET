@@ -1,0 +1,36 @@
+﻿@model List<Book>
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @item.Price.ToString("#,##0") VNĐ
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre.GenreName)
+            </td>
+            <td>
+                <a class="btn btn-primary btn-tone m-r-5" asp-action="Edit" asp-route-id="@item.BookId">Edit</a>
+                <a class="btn btn-secondary btn-tone m-r-5" asp-action="Details" asp-route-id="@item.BookId">Details</a>
+                <a class="btn btn-success btn-tone m-r-5" asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+            </td>
+        </tr>
+    }
+}

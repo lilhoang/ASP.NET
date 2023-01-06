@@ -1,0 +1,128 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<OnlineBookLibrary.Models.Book>
+
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Index Books" + CurrentPage;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Books" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-Home m-r-5"></i>Home</a>
+            <span class="breadcrumb-item active">Book List : page @CurrentPage</span>
+        </nav>
+    </div>
+</div>
+<div class="container" style="padding-top: 100px;  min-height: 80vh">
+    <div class="row">
+        <div class="col-md-12" style="float: right;">
+            <h4>
+                Books
+                <a asp-action="Create" style="float: right;" class="btn btn-primary"><span>Add Book</span></a>
+            </h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-5">
+                        <form>
+                            <p>
+                            <input class="form-control mr-sm-3" id="keyWord" name="keyWord" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Filter">Search</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="d-md-flex">
+                    <div class="m-b-10 m-r-15">
+                        <select class="custom-select" id="txtGenreID" name="txtGenreID" style="min-width: 180px; " asp-items="ViewBag.TheLoai">
+                            <option selected>Genres</option>
+                            <option value="all">All</option>
+                            
+                        </select>
+                    </div>
+                    <div class="m-b-10 m-l-15">
+                        <select class="custom-select" id="idstatus" name="idstatus" style="min-width: 180px;" asp-items="ViewBag.IsTrangThai">
+                            <option value="" disabled selected>Status</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="tbbooks" class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th></th>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Author
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Genre
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="records_table">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BookId)
+                                </td>
+                                <td>
+                                    <img src="@("~/Image/" + item.Image)" asp-append-version="true" width="80" height="100px" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Author)
+                                </td>
+                                <td>
+                                    @item.Price
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Genre.GenreName)
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary btn-tone m-r-5" asp-action="Edit" asp-route-id="@item.BookId">Edit</a>
+                                    <a class="btn btn-secondary btn-tone m-r-5" asp-action="Details" asp-route-id="@item.BookId">Details</a>
+                                    <a class="btn btn-success btn-tone m-r-5" asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <pager class="pager-container" list="@Model" asp-area="Admin" asp-route-GenreID="@ViewBag.CurrentGenreID" asp-asp-controller="Books" asp-action="Index" />
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<OnlineBookLibrary.Models.Role>
+
+@{
+    ViewData["Title"] = "Access Rights";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container" style="padding-top: 100px;  min-height: 80vh">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Roles</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+                <p>
+                    <a asp-action="Create">Create New</a>
+                </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Role Name
+                        </th>
+                        <th>
+                            Decription
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+            @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoleId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoleName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                                <a class="btn btn-primary btn-tone m-r-5" asp-action="Edit" asp-route-id="@item.RoleId">Edit</a>
+                                <a class="btn btn-secondary btn-tone m-r-5" asp-action="Details" asp-route-id="@item.RoleId">Details</a>
+                                <a class="btn btn-success btn-tone m-r-5" asp-action="Delete" asp-route-id="@item.RoleId">Delete</a>
+                        </td>
+                    </tr>
+            }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
